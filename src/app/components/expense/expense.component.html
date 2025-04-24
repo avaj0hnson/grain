@@ -1,0 +1,91 @@
+<div class="flex flex-row gap-6 px-6 py-10 w-full max-w-[1600px] mx-auto">
+
+    <!-- Expense Form Panel -->
+    <div class="w-[380px] bg-white p-6 rounded-2xl shadow-md space-y-6 shrink-0">
+        <h2 class="text-xl font-semibold text-forest">Add a New Expense</h2>
+    
+        <form [formGroup]="expenseForm" (ngSubmit)="submitForm()" class="space-y-5">
+            <!-- Title -->
+            <div>
+            <label class="block text-sm font-medium text-forest mb-1">Title</label>
+            <input type="text" formControlName="title"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-mint"
+                    placeholder="e.g. Rent, Coffee, Gym" />
+            </div>
+    
+            <!-- Date -->
+            <div>
+            <label class="block text-sm font-medium text-forest mb-1">Date</label>
+            <input type="date" formControlName="date" title="date"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-mint" />
+            </div>
+    
+            <!-- Description -->
+            <div>
+            <label class="block text-sm font-medium text-forest mb-1">Description</label>
+            <textarea formControlName="description" rows="3"
+                        class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-mint"
+                        placeholder="e.g. Groceries, Uber ride, Netflix..."></textarea>
+            </div>
+    
+            <!-- Category -->
+            <div>
+            <label class="block text-sm font-medium text-forest mb-1">Category</label>
+            <select formControlName="category"
+                    class="w-full border border-gray-300 rounded-lg p-2 bg-white focus:outline-none focus:ring-2 focus:ring-mint"
+                    title="category">
+                <option value="" disabled>Select category</option>
+                <option *ngFor="let category of listOfCategory" [value]="category">{{ category }}</option>
+            </select>
+            </div>
+    
+            <!-- Amount -->
+            <div>
+            <label class="block text-sm font-medium text-forest mb-1">Amount</label>
+            <input type="number" formControlName="amount"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-mint"
+                    placeholder="e.g. 45.67" />
+            </div>
+    
+            <!-- Submit -->
+            <div>
+            <button type="submit"
+                    [disabled]="expenseForm.invalid"
+                    class="w-full bg-primary text-white font-semibold py-2 rounded-lg transition hover:bg-forest disabled:opacity-50">
+                Post Expense
+            </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Right View Panel -->
+    <div class="flex-1 flex flex-col gap-6">
+        
+        <!-- Tab Selector -->
+        <div class="flex gap-4">
+            <button (click)="currentTab = 'table'"
+                    [class.bg-mint]="currentTab === 'table'"
+                    class="px-4 py-2 rounded-lg bg-white border text-sm font-medium hover:bg-mint hover:text-white transition">
+                Table
+            </button>
+            <button (click)="currentTab = 'chart'"
+                    [class.bg-mint]="currentTab === 'chart'"
+                    class="px-4 py-2 rounded-lg bg-white border text-sm font-medium hover:bg-mint hover:text-white transition">
+                Pie Chart
+            </button>
+            <button (click)="currentTab = 'graph'"
+                    [class.bg-mint]="currentTab === 'graph'"
+                    class="px-4 py-2 rounded-lg bg-white border text-sm font-medium hover:bg-mint hover:text-white transition">
+                Graph
+            </button>
+        </div>
+
+        <!-- Dynamic Component Display -->
+        <ng-container [ngSwitch]="currentTab">
+            <app-expense-table *ngSwitchCase="'table'" [expenses]="expenses"></app-expense-table>
+            <app-expense-pie-chart *ngSwitchCase="'chart'" [expenses]="expenses"></app-expense-pie-chart>
+            <app-expense-graph *ngSwitchCase="'graph'" [expenses]="expenses"></app-expense-graph>
+        </ng-container>
+
+    </div>
+</div>
