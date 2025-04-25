@@ -1,0 +1,19 @@
+<div class="bg-white rounded-3xl shadow-xl p-6 border border-gray-200 relative">
+    <h2 class="text-2xl font-bold text-primary tracking-tight mb-6 flex items-center gap-2">
+        {{ chartTitle }}
+    </h2>
+
+    <div class="flex justify-center">
+        <div class="w-full max-w-[450px] aspect-square">
+            <canvas baseChart
+                    [data]="pieChartData"
+                    [type]="pieChartType"
+                    [options]="{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom' } }
+                    }">
+            </canvas>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="flex gap-4">
+    <button (click)="selectTab('table')"
+        [ngClass]="{
+            'bg-primary text-white': currentTab === 'table',
+            'bg-white text-forest hover:bg-mint hover:text-white': currentTab !== 'table'
+        }"
+        class="px-4 py-2 rounded-lg border text-sm font-medium transition">
+        Table
+    </button>
+
+    <button (click)="selectTab('chart')"
+        [ngClass]="{
+            'bg-primary text-white': currentTab === 'chart',
+            'bg-white text-forest hover:bg-mint hover:text-white': currentTab !== 'chart'
+        }"
+        class="px-4 py-2 rounded-lg border text-sm font-medium transition">
+        Pie Chart
+    </button>
+
+    <button (click)="selectTab('graph')"
+        [ngClass]="{
+            'bg-primary text-white': currentTab === 'graph',
+            'bg-white text-forest hover:bg-mint hover:text-white': currentTab !== 'graph'
+        }"
+        class="px-4 py-2 rounded-lg border text-sm font-medium transition">
+        Graph
+    </button>
+</div>

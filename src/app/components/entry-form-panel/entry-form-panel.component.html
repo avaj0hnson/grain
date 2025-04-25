@@ -1,0 +1,17 @@
+<div class="relative w-[400px] bg-white p-8 rounded-3xl shadow-xl space-y-6 shrink-0 border border-gray-200" @slideInOut>
+
+    <!-- Close Button -->
+    <button (click)="close()"
+        title="closeForm"
+        class="absolute top-4 right-4 text-gray-400 hover:text-primary transition text-xl">
+        <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Title -->
+    <h2 class="text-2xl font-bold text-primary tracking-tight pb-4 flex items-center gap-2">
+        {{ title }}
+    </h2>
+
+    <!-- Content Slot -->
+    <ng-content></ng-content>
+</div>

@@ -1,32 +1,31 @@
 <div class="flex flex-row gap-6 px-6 py-10 w-full max-w-[1600px] mx-auto">
     <app-entry-form-panel
         *ngIf="formVisible"
-        [title]="selectedExpenseId ? 'Edit Expense' : 'Add a New Expense'"
+        [title]="selectedIncomeId ? 'Edit Income' : 'Add a New Income'"
         (closed)="closeForm()">
         <app-entry-form
-            [formGroup]="expenseForm"
+            [formGroup]="incomeForm"
             [listOfCategory]="listOfCategory"
-            [isEditing]="!!selectedExpenseId"
+            [isEditing]="!!selectedIncomeId"
             submitButtonText="Post Expense"
             (submitted)="submitForm()"
             (cancelled)="closeForm()">
         </app-entry-form>
     </app-entry-form-panel>
 
-
     <div class="flex-1 flex flex-col gap-6 relative">
         <app-floating-action-button
-            tooltip="Add Expense"
+            tooltip="Add Income"
             (clicked)="showAddForm()">
         </app-floating-action-button>
         <app-tab-selector
             [currentTab]="currentTab"
             (tabSelected)="currentTab = $event">
-        </app-tab-selector>
+        </app-tab-selector>      
         <ng-container [ngSwitch]="currentTab">
-            <app-entry-table *ngSwitchCase="'table'" [entries]="expenses" title="Recent Expenses" (rowClicked)="selectExpense($event)" (delete)="deleteExpense($event)"></app-entry-table>          
-            <app-entry-pie-chart *ngSwitchCase="'chart'" [entries]="expenses" chartTitle="Spending by Category"></app-entry-pie-chart>
-            <app-entry-graph *ngSwitchCase="'graph'" [entries]="expenses" graphTitle="Spending Over Time"></app-entry-graph>          
+            <app-entry-table *ngSwitchCase="'table'" [entries]="incomes" title="Recent Income" (rowClicked)="selectIncome($event)" (delete)="deleteIncome($event)"></app-entry-table>
+            <app-entry-pie-chart *ngSwitchCase="'chart'" [entries]="incomes" chartTitle="Income by Source"></app-entry-pie-chart>
+            <app-entry-graph *ngSwitchCase="'graph'" [entries]="incomes" graphTitle="Income Over Time"></app-entry-graph>
         </ng-container>
     </div>
 </div>

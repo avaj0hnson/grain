@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpenseGraphComponent } from './expense-graph.component';
+import { EntryTableComponent } from './entry-table.component';
 
-describe('ExpenseGraphComponent', () => {
-  let component: ExpenseGraphComponent;
-  let fixture: ComponentFixture<ExpenseGraphComponent>;
+describe('EntryTableComponent', () => {
+  let component: EntryTableComponent;
+  let fixture: ComponentFixture<EntryTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExpenseGraphComponent]
+      imports: [EntryTableComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ExpenseGraphComponent);
+    fixture = TestBed.createComponent(EntryTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

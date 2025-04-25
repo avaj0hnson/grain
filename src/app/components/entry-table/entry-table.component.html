@@ -1,0 +1,43 @@
+<div class="bg-white rounded-3xl shadow-xl p-6 overflow-auto max-h-[400px] border border-gray-200 relative">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-bold text-primary tracking-tight mb-4 flex items-center gap-2">
+            {{ title }}
+        </h2>
+        </div>
+    
+    <table class="min-w-full table-auto text-sm text-forest">
+        <thead class="text-left uppercase text-gray-400 text-xs tracking-wider">
+            <tr>
+                <th class="py-3">Title</th>
+                <th class="py-3">Amount</th>
+                <th class="py-3">Date</th>
+                <th class="py-3">Category</th>
+                <th class="py-3 text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let entry of entries | slice:0:maxRows"
+                class="group hover:bg-mint/20 transition cursor-pointer rounded-lg relative"
+                (click)="onRowClick(entry)">
+                <td class="py-3 font-medium pl-2">{{ entry.title }}</td>
+                <td class="py-3">${{ entry.amount.toFixed(2) }}</td>
+                <td class="py-3">{{ entry.date }}</td>
+                <td class="py-3">
+                    <span [ngClass]="getCategoryClass(entry.category)"
+                        class="px-2 py-1 rounded-lg text-xs font-semibold">
+                    {{ entry.category }}
+                    </span>
+                </td>
+                <td class="py-3 text-center">
+                    <div class="opacity-0 group-hover:opacity-100 flex justify-center items-center gap-6 transition">
+                    <button (click)="deleteRecord(entry.id); $event.stopPropagation()"
+                            class="text-red-400 hover:text-red-600 transition text-2xl"
+                            title="Delete Record">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
