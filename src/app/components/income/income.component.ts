@@ -85,6 +85,14 @@ export class IncomeComponent implements OnInit {
     this.incomeForm.reset({ date: this.getToday() });
     this.selectedIncomeId = null;
     this.formVisible = true;
+
+    if(this.currentTab == 'graph')
+    {
+      this.currentTab = 'table';
+      setTimeout(() => {
+        this.currentTab = 'graph';
+      }, 0);
+    }
   }
 
   selectIncome(income: Income) {

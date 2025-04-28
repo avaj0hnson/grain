@@ -69,6 +69,14 @@ export class ExpenseComponent implements OnInit {
     this.expenseForm.reset({ date: this.getToday() });
     this.selectedExpenseId = null;
     this.formVisible = true;
+
+    if(this.currentTab == 'graph')
+    {
+      this.currentTab = 'table';
+      setTimeout(() => {
+        this.currentTab = 'graph';
+      }, 0);
+    }
   }
 
   selectExpense(expense: Expense) {
